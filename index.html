@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>XiVO Authentification</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/signin.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="container">
+
+      <div class="auth"> 
+        <form class="auth" id="login" method="post">
+          <h2 class="form-signin-heading">Please sign in</h2>
+          <label for="username" class="sr-only">Username</label>
+          <input type="text" id="username" class="form-control" placeholder="Username" required autofocus>
+          <label for="password" class="sr-only">Password</label>
+          <input type="password" id="password" class="form-control" placeholder="Password" required>
+          <label for="server" class="sr-only">Server</label>
+          <input type="text" id="server" class="form-control" placeholder="Server"  value="http://192.168.32.41:9999" required>
+          <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        </form>
+      </div>
+
+      <div class="logout">
+        <form name="logout" id="logout" method="post">
+          <input class="btn btn-primary" type="submit" value="logout"/>
+        </form>
+      </div>
+
+    </div>
+  <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+  <script src="js/js.cookie.js"></script>
+  <script src="js/auth.js"></script>
+  </body>
+</html>

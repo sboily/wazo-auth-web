@@ -17,11 +17,15 @@ password));
         ContentType: "application/json",
         accepts: { json: 'application/json' },
         success: function(data) {
-           token = data['data']['token']
+           token = data['data']['token'];
+           uuid = data['data']['uuid'];
            console.log(data);
            Cookies.set('session', token);
+           Cookies.set('uuid', uuid);
            $('#login').hide();
            $('#logout').show();
+           info = "token: " + token + "<br>" + "uuid: " + uuid;
+           $('.info').html(info);
         }
     });
 }
@@ -36,6 +40,7 @@ var logout = function (token) {
         success: function(data) {
            console.log(data);
            Cookies.remove('session');
+           Cookies.remove('uuid');
            $('#logout').hide();
            $('#login').show();
         }
@@ -61,10 +66,13 @@ $(function() {
     });
 
 
-    if (Cookies.get('session'))
+    if (Cookies.get('session')) {
         $('#login').hide();
-    else
+        info = "token: " + Cookies.get('session') + "<br>" + "uuid: " + Cookies.get('uuid');
+        $('.info').html(info);
+    } else {
         $('#logout').hide();
+    }
 
 });
 

@@ -9,13 +9,14 @@ var login = function (username, password) {
     $.ajax({
         url: auth_host + "/0.1/token",
         type: "POST",
+        contentType: "application/json",
+        accepts: { json: "application/json" },
         dataType: "json",
+        data: JSON.stringify({"type": "xivo_user"}),
         beforeSend: function (xhr) { 
-            xhr.setRequestHeader('Authorization', make_base_auth(username,
+            xhr.setRequestHeader("Authorization", make_base_auth(username,
 password)); 
         },
-        ContentType: "application/json",
-        accepts: { json: 'application/json' },
         success: function(data) {
            token = data['data']['token'];
            uuid = data['data']['uuid'];

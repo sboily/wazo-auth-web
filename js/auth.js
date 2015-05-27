@@ -1,3 +1,5 @@
+var auth_host = $("input#server").val();
+
 var make_base_auth = function(user, password) {
   var tok = user + ':' + password;
   var hash = btoa(tok);
@@ -49,6 +51,31 @@ var logout = function (token) {
     });
 }
 
+var get_backends = function () {
+    var backends = false;
+    $.ajax({
+        url: auth_host + "/0.1/backends",
+        async: false,
+        type: "GET",
+        dataType: "json",
+        contentType : 'application/json',
+        success: function(data) {
+           backends = data;
+        }
+    });
+    return backends;
+}
+
+var set_backends = function (backends) {
+    $('#auth_type').find('option').remove();
+    $.each(backends['data'], function(index, element) {
+        text = 'With ' + element.toUpperCase().replace('_',' ');
+        value = element;
+        var option = new Option(text, value);
+        $('#auth_type').append($(option));
+    });
+}
+
 $(function() {
     $('#login').on('submit', function(e) {
         e.preventDefault();
@@ -77,6 +104,8 @@ $(function() {
     } else {
         $('#logout').hide();
     }
+
+    set_backends(get_backends());
 
 });
 

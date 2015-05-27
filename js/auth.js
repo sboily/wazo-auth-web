@@ -1,3 +1,5 @@
+var auth_backend = "xivo_user"; // xivo_user|ldap
+
 var make_base_auth = function(user, password) {
   var tok = user + ':' + password;
   var hash = btoa(tok);
@@ -12,7 +14,7 @@ var login = function (username, password) {
         contentType: "application/json",
         accepts: { json: "application/json" },
         dataType: "json",
-        data: JSON.stringify({"type": "xivo_user"}),
+        data: JSON.stringify({"type": auth_backend}),
         beforeSend: function (xhr) { 
             xhr.setRequestHeader("Authorization", make_base_auth(username,
 password)); 

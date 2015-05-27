@@ -21,6 +21,10 @@
               <input type="text" id="username" class="form-control" placeholder="Username" required autofocus>
               <input type="password" id="password" class="form-control" placeholder="Password" required>
               <input type="text" id="server" class="form-control" placeholder="Server"  value="http://192.168.32.41:9497" required>
+              <select id="auth_type" class="form-control" required>
+                <option value="xivo_user">With XiVO</option>
+                <option value="ldap">With LDAP</option>
+              </select>
               <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
             </form>
           </div>

@@ -1,5 +1,3 @@
-var auth_backend = "xivo_user"; // xivo_user|ldap
-
 var make_base_auth = function(user, password) {
   var tok = user + ':' + password;
   var hash = btoa(tok);
@@ -8,6 +6,7 @@ var make_base_auth = function(user, password) {
 
 var login = function (username, password) {
     auth_host = Cookies.get('server');
+    auth_backend = Cookies.get('auth');
     $.ajax({
         url: auth_host + "/0.1/token",
         type: "POST",
@@ -56,7 +55,9 @@ $(function() {
         username = $("input#username").val();
         password = $("input#password").val();
         server = $("input#server").val();
+        auth_backend = $("select#auth_type").val();
         Cookies.set('server', server);
+        Cookies.set('auth', auth_backend);
 
         login(username, password);
     });

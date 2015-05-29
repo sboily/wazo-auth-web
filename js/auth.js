@@ -15,7 +15,7 @@ var login = function (username, password) {
         contentType: "application/json",
         accepts: { json: "application/json" },
         dataType: "json",
-        data: JSON.stringify({"type": auth_backend}),
+        data: JSON.stringify({"backend": auth_backend}),
         beforeSend: function (xhr) { 
             xhr.setRequestHeader("Authorization", make_base_auth(username,
 password)); 

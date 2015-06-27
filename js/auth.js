@@ -22,7 +22,7 @@ password));
         },
         success: function(data) {
            token = data['data']['token'];
-           uuid = data['data']['uuid'];
+           uuid = data['data']['auth_id'];
            console.log(data);
            Cookies.set('session', token);
            Cookies.set('uuid', uuid);

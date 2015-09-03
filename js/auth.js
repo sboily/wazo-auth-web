@@ -28,7 +28,9 @@ password));
            Cookies.set('uuid', uuid);
            $('#login').hide();
            $('#logout').show();
-           info = "token: " + token + "<br>" + "uuid: " + uuid;
+           info = "token: " + token + "<br>";
+           if (uuid)
+               info += "uuid: " + uuid;
            $('.info').html(info);
         }
     });

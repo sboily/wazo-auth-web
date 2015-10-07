@@ -23,14 +23,17 @@ password));
         success: function(data) {
            token = data['data']['token'];
            uuid = data['data']['auth_id'];
+           acls = data['data']['acls'];
            console.log(data);
            Cookies.set('session', token);
            Cookies.set('uuid', uuid);
+           Cookies.set('acls', acls);
            $('#login').hide();
            $('#logout').show();
            info = "token: " + token + "<br>";
            if (uuid)
-               info += "uuid: " + uuid;
+               info += "uuid: " + uuid + "<br>";
+           info += "acls: " + acls;
            $('.info').html(info);
         }
     });
@@ -101,7 +104,7 @@ $(function() {
 
     if (Cookies.get('session')) {
         $('#login').hide();
-        info = "token: " + Cookies.get('session') + "<br>" + "uuid: " + Cookies.get('uuid');
+        info = "token: " + Cookies.get('session') + "<br>uuid: " + Cookies.get('uuid') + "<br>acls: " + Cookies.get('acls');
         $('.info').html(info);
     } else {
         $('#logout').hide();

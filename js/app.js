@@ -59,9 +59,17 @@ var set_host = function() {
     auth.host = $("input#host").val();
 }
 
+var auth_error = function(data) {
+    console.log(data.status);
+    console.log(data.statusText);
+    message = "<strong>Error:</strong> "+ data.status +"<br><strong>Message:</strong> "+ data.statusText;
+    $('#error').removeClass('hide');
+    $('#error').append(message);
+}
+
 var launch_login = function() {
     $('#main').hide();
-    auth.backend(set_backends);
+    auth.backend(set_backends, auth_error);
 
     $('#login').on('submit', function(e) {
         e.preventDefault();
@@ -70,7 +78,8 @@ var launch_login = function() {
                    $("input#password").val(), 
                    $("select#backend").val(),
                    null,
-                   launch_application);
+                   launch_application,
+                   auth_error);
     });
 
 }

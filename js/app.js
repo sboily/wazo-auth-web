@@ -28,7 +28,7 @@ var unset_cookies = function(data) {
 }
 
 var logout = function() {
-    $('#logout').on('submit', function(e) {
+    $('#logout').on('click', function(e) {
         e.preventDefault();
         auth.logout(Cookies.get('xivo_auth_session'), unset_cookies);
     });
@@ -38,12 +38,14 @@ var launch_application = function(session) {
     $('#login').hide();
     $('#main').show();
     $('#error').addClass('hide');
+    $.backstretch("destroy");
     if (session)
         set_cookies(session);
-    info = "token: " + Cookies.get('xivo_auth_session') + "<br>uuid: " +
-                       Cookies.get('xivo_auth_uuid') + "<br>acls: " +
-                       Cookies.get('xivo_auth_acls');
-    $('.info').html(info);
+    info = "<tr><td><strong>token</strong></td><td>" + Cookies.get('xivo_auth_session') + "</td></tr>" +
+           "<tr><td><strong>uuid</strong></td><td>" + Cookies.get('xivo_auth_uuid') + "</td></tr>" +
+           "<tr><td><strong>auth_id</strong></td><td>" + Cookies.get('xivo_auth_auth_id') + "</td></tr>" +
+           "<tr><td><strong>acls</strong></td><td>" + Cookies.get('xivo_auth_acls') + "</td></tr>";
+    $('#auth').html(info);
     logout();
 }
 
@@ -70,11 +72,11 @@ var auth_error = function(data) {
 
 var launch_login = function() {
     $('#main').hide();
+    $.backstretch("img/1.jpg");
     auth.backend(set_backends, auth_error);
 
-    $('#login').on('submit', function(e) {
+    $('#authenticate').on('submit', function(e) {
         e.preventDefault();
-
         auth.login($("input#username").val(),
                    $("input#password").val(), 
                    $("select#backend").val(),

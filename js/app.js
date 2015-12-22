@@ -1,3 +1,5 @@
+auth = new XiVOAuth();
+
 var set_backends = function (backends) {
     $('#backend').find('option').remove();
     if (backends) {
@@ -17,18 +19,18 @@ var set_cookies = function(session) {
     Cookies.set('xivo_auth_auth_id', session['data']['auth_id']);
 }
 
-var unset_cookies = function() {
+var unset_cookies = function(data) {
     Cookies.remove('xivo_auth_session');
     Cookies.remove('xivo_auth_uuid');
     Cookies.remove('xivo_auth_acls');
     Cookies.remove('xivo_auth_auth_id');
+    location.reload();
 }
 
-var logout = function(auth) {
+var logout = function() {
     $('#logout').on('submit', function(e) {
-        logout = auth.logout(Cookies.get('xivo_auth_session'));
-        if (logout)
-            unset_cookies();
+        e.preventDefault();
+        auth.logout(Cookies.get('xivo_auth_session'), unset_cookies);
     });
 }
 
@@ -41,6 +43,7 @@ var launch_application = function(session) {
                        Cookies.get('xivo_auth_uuid') + "<br>acls: " +
                        Cookies.get('xivo_auth_acls');
     $('.info').html(info);
+    logout();
 }
 
 var set_host = function() {
@@ -52,23 +55,22 @@ var set_host = function() {
         Cookies.set('xivo_server', $('#host').val());
         location.reload();
     });
+
+    auth.host = $("input#host").val();
 }
 
-var launch_login = function(auth) {
+var launch_login = function() {
     $('#main').hide();
-    set_backends(auth.backend());
+    auth.backend(set_backends);
 
     $('#login').on('submit', function(e) {
         e.preventDefault();
 
-        session = auth.login($("input#username").val(),
-                             $("input#password").val(), 
-                             $("select#backend").val());
-        if (session) {
-            launch_application(session);
-        } else {
-            alert('Sorry, your login/password is wrong!');
-        }
+        auth.login($("input#username").val(),
+                   $("input#password").val(), 
+                   $("select#backend").val(),
+                   null,
+                   launch_application);
     });
 
 }
@@ -76,11 +78,8 @@ var launch_login = function(auth) {
 $(document).ready(function() {
     set_host();
 
-    auth = new XiVOAuth($("input#host").val())
-    logout(auth);
-
     if (Cookies.get('xivo_auth_session') == null) {
-        launch_login(auth);
+        launch_login();
     } else {
         launch_application();
     }

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/signin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.9.3/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="css/form-elements.css">
     <link rel="stylesheet" href="css/style.css">
   </head>
@@ -42,11 +42,12 @@
                     <input type="text" id="host" class="form-control" placeholder="Server" value="https://192.168.32.41:9497" required>
                   </div>
    	          <div class="form-group">
-                    <select id="backend" class="form-control input-lg" required>
+                    <select id="backend" class="selectpicker" data-style="select" required>
                       <option value="">Missing backend</option>
                     </select>
                   </div>
                 </div>
+   	        <br>
    	        <button type="submit" class="btn">Sign in!</button>
               </form>
             </div>
@@ -79,12 +80,13 @@
       </div>
     </div>
 
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script src="https://jpillora.com/jquery.rest/dist/1/jquery.rest.min.js"></script>
   <script src="https://raw.githubusercontent.com/sboily/xivo-js/master/src/auth.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.0.4/js.cookie.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.9.3/js/bootstrap-select.min.js"></script>
   <script src="js/app.js"></script>
   </body>
 </html>

@@ -7,9 +7,10 @@ var set_backends = function (backends) {
             text = 'With ' + element.toUpperCase().replace('_',' ');
             value = element;
             var option = new Option(text, value);
-            $('#backend').append($(option));
+            $('.selectpicker').append($(option));
         });
     }
+    $('.selectpicker').selectpicker('refresh');
 }
 
 var set_cookies = function(session) {

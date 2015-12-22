@@ -37,6 +37,7 @@ var logout = function() {
 var launch_application = function(session) {
     $('#login').hide();
     $('#main').show();
+    $('#error').addClass('hide');
     if (session)
         set_cookies(session);
     info = "token: " + Cookies.get('xivo_auth_session') + "<br>uuid: " +
@@ -64,7 +65,7 @@ var auth_error = function(data) {
     console.log(data.statusText);
     message = "<strong>Error:</strong> "+ data.status +"<br><strong>Message:</strong> "+ data.statusText;
     $('#error').removeClass('hide');
-    $('#error').append(message);
+    $('#error').html(message);
 }
 
 var launch_login = function() {

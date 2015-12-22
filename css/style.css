@@ -85,6 +85,10 @@ img { max-width: 100%; }
     padding: 100px 0 170px 0;
 }
 
+.backstretch {
+    filter: brightness(30%);
+}
+
 .top-content .text {
 	color: #888;
 }
@@ -104,7 +108,7 @@ img { max-width: 100%; }
 .top-content .description a:focus { border-bottom: 1px dotted #fff; }
 
 .form-box {
-	margin-top: 35px;
+	margin-top: 100px;
 }
 
 .form-top {

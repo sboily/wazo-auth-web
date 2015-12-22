@@ -76,7 +76,7 @@ var auth_error = function(data) {
 
 var launch_login = function() {
     $('#main').hide();
-    $.backstretch("img/1.jpg");
+    $.backstretch(["img/1.jpg"], {centeredY: false});
     auth.backend(set_backends, auth_error);
 
     $('#authenticate').on('submit', function(e) {

@@ -66,6 +66,8 @@ var launch_login = function(auth) {
                              $("select#backend").val());
         if (session) {
             launch_application(session);
+        } else {
+            alert('Sorry, your login/password is wrong!');
         }
     });
 

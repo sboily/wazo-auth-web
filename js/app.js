@@ -69,6 +69,11 @@ var auth_error = function(data) {
     console.log(data.status);
     console.log(data.statusText);
     message = "<p class='text-left'><strong>Error:</strong> "+ data.status +"<br><strong>Message:</strong> "+ data.statusText + "</p>";
+    if (data.status == 0) {
+        server = Cookies.get('xivo_server') + "/0.1/backends";
+        message += "<p class='text-left'><strong>Important:</strong> Please click on this <strong><a href='" +
+                    server + "' target='_blank'>link</a></strong> to check your service!</p>";
+    }
     $('#error').removeClass('hide');
     $('#error').html(message);
     $(".loader").fadeOut("slow");

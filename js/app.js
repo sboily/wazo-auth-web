@@ -77,7 +77,12 @@ var auth_error = function(data) {
 var launch_login = function() {
     $('#main').hide();
     $.backstretch(["img/1.jpg"], {centeredY: false});
-    auth.backend(set_backends, auth_error);
+
+    if ($("input#host").val()) {
+        auth.backend(set_backends, auth_error);
+    } else {
+        $(".loader").fadeOut("slow");
+    }
 
     $('#authenticate').on('submit', function(e) {
         e.preventDefault();

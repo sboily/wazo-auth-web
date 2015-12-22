@@ -66,7 +66,7 @@ var set_host = function() {
 var auth_error = function(data) {
     console.log(data.status);
     console.log(data.statusText);
-    message = "<strong>Error:</strong> "+ data.status +"<br><strong>Message:</strong> "+ data.statusText;
+    message = "<p class='text-left'><strong>Error:</strong> "+ data.status +"<br><strong>Message:</strong> "+ data.statusText + "</p>";
     $('#error').removeClass('hide');
     $('#error').html(message);
 }

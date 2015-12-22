@@ -11,6 +11,7 @@ var set_backends = function (backends) {
         });
     }
     $('.selectpicker').selectpicker('refresh');
+    $(".loader").fadeOut("slow");
 }
 
 var set_cookies = function(session) {
@@ -69,6 +70,7 @@ var auth_error = function(data) {
     message = "<p class='text-left'><strong>Error:</strong> "+ data.status +"<br><strong>Message:</strong> "+ data.statusText + "</p>";
     $('#error').removeClass('hide');
     $('#error').html(message);
+    $(".loader").fadeOut("slow");
 }
 
 var launch_login = function() {

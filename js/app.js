@@ -26,6 +26,7 @@ var unset_cookies = function(data) {
     Cookies.remove('xivo_auth_uuid');
     Cookies.remove('xivo_auth_acls');
     Cookies.remove('xivo_auth_auth_id');
+    $(".loader").fadeOut("slow");
     location.reload();
 }
 

@@ -1,11 +1,3 @@
-if (Cookies.get('xivo_server') == null) {
-    var host = $("input#host").val();
-    Cookies.set('xivo_server', host);
-} else {
-    var host = Cookies.get('xivo_server');
-    Cookies.remove('xivo_server');
-}
-
 var set_backends = function (backends) {
     $('#backend').find('option').remove();
     if (backends) {
@@ -18,15 +10,77 @@ var set_backends = function (backends) {
     }
 }
 
-var launch_application = function() {
+var set_cookies = function(session) {
+    Cookies.set('xivo_auth_session', session['data']['token']);
+    Cookies.set('xivo_auth_uuid', session['data']['xivo_user_uuid']);
+    Cookies.set('xivo_auth_acls', session['data']['acls']);
+    Cookies.set('xivo_auth_auth_id', session['data']['auth_id']);
+}
+
+var unset_cookies = function() {
+    Cookies.remove('xivo_auth_session');
+    Cookies.remove('xivo_auth_uuid');
+    Cookies.remove('xivo_auth_acls');
+    Cookies.remove('xivo_auth_auth_id');
+}
+
+var logout = function(auth) {
+    $('#logout').on('submit', function(e) {
+        logout = auth.logout(Cookies.get('xivo_auth_session'));
+        if (logout)
+            unset_cookies();
+    });
+}
+
+var launch_application = function(session) {
+    $('#login').hide();
     $('#main').show();
-    info = "token: " + Cookies.get('xivo_session') + "<br>uuid: " + Cookies.get('xivo_uuid') + "<br>acls: " + Cookies.get('xivo_acls');
+    if (session)
+        set_cookies(session);
+    info = "token: " + Cookies.get('xivo_auth_session') + "<br>uuid: " +
+                       Cookies.get('xivo_auth_uuid') + "<br>acls: " +
+                       Cookies.get('xivo_auth_acls');
     $('.info').html(info);
 }
 
-$(document).ready(function() {
-    if (Cookies.get('xivo_session') == null) {
-        $('#main').hide();
-        set_backends(get_backends());
+var set_host = function() {
+    if (Cookies.get('xivo_server')) {
+        $('#host').val(Cookies.get('xivo_server'));
     }
+
+    $('#host').change(function() {
+        Cookies.set('xivo_server', $('#host').val());
+        location.reload();
+    });
+}
+
+var launch_login = function(auth) {
+    $('#main').hide();
+    set_backends(auth.backend());
+
+    $('#login').on('submit', function(e) {
+        e.preventDefault();
+
+        session = auth.login($("input#username").val(),
+                             $("input#password").val(), 
+                             $("select#backend").val());
+        if (session) {
+            launch_application(session);
+        }
+    });
+
+}
+
+$(document).ready(function() {
+    set_host();
+
+    auth = new XiVOAuth($("input#host").val())
+    logout(auth);
+
+    if (Cookies.get('xivo_auth_session') == null) {
+        launch_login(auth);
+    } else {
+        launch_application();
+    }
+
 });

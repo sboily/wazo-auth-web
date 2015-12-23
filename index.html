@@ -41,7 +41,7 @@
  	        <div class="input-group form-inline"> 
                 <span class="input-group-addon"><i class="fa fa-server"></i></span>
  	          <div class="form-group">
-                  <input type="text" id="host" class="form-control" placeholder="Please set a XiVO auth..." value="" required>
+                  <input type="text" id="host" class="form-control" placeholder="Please set a XiVO auth..." value="" data-toggle="tooltip" data-placement="bottom" title="Looks like https://ip:9497" required>
                 </div>
  	          <div class="form-group">
                   <select id="backend" class="selectpicker" data-style="select" required>
@@ -87,10 +87,20 @@
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
               <h4 class="modal-title" id="myModalLabel">Welcome to XiVO auth</h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body text-left">
               <p>Hello, this is your first connection to this system or your xivo auth host connection is empty.</p>
               <p>If it your first time, please take time to understand how does it work and what you can do here.</p>
-              <p>Thank you for supporting XiVO!</p>
+              <p>You need to a connection to your XiVO auth service. By default it looks like <strong>https://ip_address_of_your_xivo:9497</strong>.
+              Please accept the certificate on your service</p>
+              <p>The backends:
+                <ul>
+                  <li>XiVO Admin: use your xivo webi user like root.</li>
+                  <li>XiVO User: use client cti user.</li>
+                  <li>XiVO Service: use a specific user from xivo-manage-key.</li>
+                  <li>XiVO WS: use a webservice user set in webi.</li>
+                </ul>
+              </p>
+              <p>Thank you for supporting <strong>XiVO!</strong></p>
             </div>
           </div>
         </div>

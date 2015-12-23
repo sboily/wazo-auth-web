@@ -86,6 +86,7 @@ var auth_error = function(data) {
 var launch_login = function() {
     $('#main').hide();
     $.backstretch(["img/1.jpg"], {centeredY: false});
+    $('[data-toggle="tooltip"]').tooltip()
 
     if ($("input#host").val()) {
         auth.backend(set_backends, auth_error);

@@ -63,6 +63,10 @@ var set_host = function() {
     });
 
     auth.host = $("input#host").val();
+
+    if (!auth.host) {
+        $('#tutorial').modal();
+    }
 }
 
 var auth_error = function(data) {
@@ -103,6 +107,7 @@ var launch_login = function() {
 
 $(document).ready(function() {
     set_host();
+
 
     if (Cookies.get('xivo_auth_session') == null) {
         launch_login();

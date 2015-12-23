@@ -1,5 +1,12 @@
 # xivo-auth-web
 
-This is a proof of concept to authenticate a user with xivo in javascript. With the token you get an access to you personnal storage on consul kv. Many other xivo daemon have this ability in the futur.
+What is it?
+===========
+
+This is a proof of concept to authenticate a user in xivo with javascript. With the token you get an access on diffent API (api.xivo.io) depends on your ACL.
+
+There is an online instance on https://auth.xivo.io.
 
 Working with xivo > 15.11
+
+![Auth screenshot](/screenshots/login.png?raw=true "Auth")

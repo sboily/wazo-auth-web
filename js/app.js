@@ -33,7 +33,7 @@ var unset_cookies = function(data) {
 var logout = function() {
     $('#logout').on('click', function(e) {
         e.preventDefault();
-        auth.logout(Cookies.get('xivo_auth_session'), unset_cookies);
+        auth.logout(Cookies.get('xivo_auth_session')).done(unset_cookies);
     });
 }
 
@@ -89,7 +89,7 @@ var launch_login = function() {
     $('[data-toggle="tooltip"]').tooltip()
 
     if ($("input#host").val()) {
-        auth.backend(set_backends, auth_error);
+        auth.backend().done(set_backends).fail(auth_error);
     } else {
         $(".loader").fadeOut("slow");
     }
@@ -100,7 +100,7 @@ var launch_login = function() {
               password: $("input#password").val(),
               backend: $("select#backend").val(),
             };
-        auth.login(c, launch_application, auth_error);
+        auth.login(c).done(launch_application).fail(auth_error);
     });
 
 }

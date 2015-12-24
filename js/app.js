@@ -96,12 +96,11 @@ var launch_login = function() {
 
     $('#authenticate').on('submit', function(e) {
         e.preventDefault();
-        auth.login($("input#username").val(),
-                   $("input#password").val(), 
-                   $("select#backend").val(),
-                   null,
-                   launch_application,
-                   auth_error);
+        c = { username: $("input#username").val(),
+              password: $("input#password").val(),
+              backend: $("select#backend").val(),
+            };
+        auth.login(c, launch_application, auth_error);
     });
 
 }

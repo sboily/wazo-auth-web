@@ -108,7 +108,6 @@ var launch_login = function() {
 $(document).ready(function() {
     set_host();
 
-
     if (Cookies.get('xivo_auth_session') == null) {
         launch_login();
     } else {

@@ -49,7 +49,6 @@ var getExpirationTime = function() {
 
 var set_backends = function () {
     $('#backend').find('option').remove();
-    $('#error').html('').addClass('hidden');
 
     auth.host = $("input#host").val();
     auth.backend().done(print_backends).fail(auth_error);
@@ -121,7 +120,7 @@ var print_auth_info = function() {
 }
 
 var auth_error = function(data) {
-    $('#error').removeClass('hidden');
+    $('#error').html('').removeClass('hidden');
 
     $('<p>', {
         'class': 'text-left',

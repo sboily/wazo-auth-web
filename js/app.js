@@ -26,6 +26,27 @@ auth = new XiVOAuth();
 var session = Cookies.getJSON('xivo_auth_session');
 var background_login = ["img/1.jpg"];
 
+var startLogoutTimer = function() {
+    setTimeout(LogoutTimeout, getExpirationTime());
+}
+
+var LogoutTimeout = function() {
+    console.log("Auto logout");
+    logout();
+}
+
+var getExpirationTime = function() {
+    expiration = new Date(session.expires);
+    time_now = new Date();
+    expires = expiration.getTime() - time_now.getTime();
+    if (expires < 0) {
+        timezone = expiration.getTimezoneOffset() * 60 * 1000;
+        expires = expiration.getTime() - time_now.getTime() + timezone;
+    }
+
+    return expires;
+}
+
 var set_backends = function () {
     $('#backend').find('option').remove();
     $('#error').html('').addClass('hidden');
@@ -64,12 +85,16 @@ var unset_cookies = function() {
     location.reload();
 }
 
-var logout = function() {
+var actionLogout = function() {
     $('#logout').on('click', function(e) {
         e.preventDefault();
-        auth.host = session.auth_host;
-        auth.logout(session.token).done(unset_cookies);
+        logout();
     });
+}
+
+var logout = function() {
+    auth.host = session.auth_host;
+    auth.logout(session.token).done(unset_cookies);
 }
 
 var launch_application = function(data) {
@@ -80,9 +105,10 @@ var launch_application = function(data) {
     $('#main').removeClass('hidden');
 
     if (data) { set_cookies(data); }
-
+ 
+    startLogoutTimer();
     print_auth_info();
-    logout();
+    actionLogout();
 }
 
 var print_auth_info = function() {

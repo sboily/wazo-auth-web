@@ -32,7 +32,7 @@ var startLogoutTimer = function() {
 
 var LogoutTimeout = function() {
     console.log("Auto logout");
-    logout();
+    //logout();
 }
 
 var getExpirationTime = function() {

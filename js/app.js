@@ -114,7 +114,8 @@ var print_auth_info = function() {
     info = "<tr><td><strong>token</strong></td><td>" + session.token + "</td></tr>" +
            "<tr><td><strong>uuid</strong></td><td>" + session.uuid + "</td></tr>" +
            "<tr><td><strong>auth_id</strong></td><td>" + session.auth_id + "</td></tr>" +
-           "<tr><td><strong>acls</strong></td><td>" + session.acls + "</td></tr>";
+           "<tr><td><strong>acls</strong></td><td>" + session.acls + "</td></tr>" +
+           "<tr><td><strong>expiration</strong></td><td>" + session.expires + "</td></tr>";
 
     $('#auth').html(info);
 }

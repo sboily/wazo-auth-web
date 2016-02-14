@@ -107,6 +107,7 @@ var launch_application = function(data) {
  
     startLogoutTimer();
     print_auth_info();
+    addCounter('expiration', session.expires);
     actionLogout();
 }
 
@@ -114,10 +115,38 @@ var print_auth_info = function() {
     info = "<tr><td><strong>token</strong></td><td>" + session.token + "</td></tr>" +
            "<tr><td><strong>uuid</strong></td><td>" + session.uuid + "</td></tr>" +
            "<tr><td><strong>auth_id</strong></td><td>" + session.auth_id + "</td></tr>" +
-           "<tr><td><strong>acls</strong></td><td>" + session.acls + "</td></tr>" +
-           "<tr><td><strong>expiration</strong></td><td>" + session.expires + "</td></tr>";
+           "<tr><td><strong>expiration</strong></td><td>" + session.expires + " in <em><span id='expiration'></span></em></td></tr>" +
+           "<tr><td><strong>acls</strong></td><td>" + session.acls + "</td></tr>";
 
     $('#auth').html(info);
+}
+
+var addCounter = function(elem, datetime) {
+    countdown(new Date(datetime),
+              function(ts) {
+                   $('[id="'+ elem + '"]').html(formatSessionTime(ts));
+               },
+               countdown.HOURS | countdown.MINUTES | countdown.SECONDS);
+}
+
+var formatSessionTime = function(ts) {
+    s = '';
+
+    if (ts.hours)
+        s += addZero(ts.hours)+':';
+    if (ts.minutes)
+        s += addZero(ts.minutes)+':';
+
+    s += addZero(ts.seconds);
+
+    return s
+}
+
+var addZero = function(i) {
+    if (i < 10) {
+        i = "0" + i;
+    }
+    return i;
 }
 
 var auth_error = function(data) {

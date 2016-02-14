@@ -32,7 +32,7 @@ var startLogoutTimer = function() {
 
 var LogoutTimeout = function() {
     console.log("Auto logout");
-    logout();
+    //logout();
 }
 
 var getExpirationTime = function() {
@@ -112,6 +112,14 @@ var launch_application = function(data) {
 }
 
 var print_auth_info = function() {
+    if (!session.uuid) {
+        session.uuid = '-'
+    }
+
+    if (session.acls == '') {
+        session.acls = '-'
+    }
+
     info = "<tr><td><strong>token</strong></td><td>" + session.token + "</td></tr>" +
            "<tr><td><strong>uuid</strong></td><td>" + session.uuid + "</td></tr>" +
            "<tr><td><strong>auth_id</strong></td><td>" + session.auth_id + "</td></tr>" +

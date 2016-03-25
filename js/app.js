@@ -116,17 +116,26 @@ var print_auth_info = function() {
         session.uuid = '-'
     }
 
-    if (session.acls == '') {
-        session.acls = '-'
-    }
-
     info = "<tr><td><strong>token</strong></td><td>" + session.token + "</td></tr>" +
            "<tr><td><strong>uuid</strong></td><td>" + session.uuid + "</td></tr>" +
            "<tr><td><strong>auth_id</strong></td><td>" + session.auth_id + "</td></tr>" +
            "<tr><td><strong>expiration</strong></td><td>" + session.expires + " in <em><span id='expiration'></span></em></td></tr>" +
-           "<tr><td><strong>acls</strong></td><td>" + session.acls + "</td></tr>";
+           "<tr><td><strong>acls</strong></td><td id='acls'></td></tr>";
 
     $('#auth').html(info);
+    $('#acls').append(print_acls(session.acls));
+}
+
+var print_acls = function(acls) {
+    if (session.acls == '') {
+        return '-';
+    }
+
+    acl = $('<ul>', { 'class': 'nav' });
+    for (a = 0; a < acls.length; a++) {
+        $('<li>', { 'html': acls[a] }).appendTo(acl);
+    }
+    return acl;
 }
 
 var addCounter = function(elem, datetime) {

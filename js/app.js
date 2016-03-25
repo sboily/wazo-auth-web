@@ -73,7 +73,8 @@ var set_cookies = function(data) {
                 acls: data['data']['acls'],
                 auth_id: data['data']['auth_id'],
                 expires: new Date(data['data']['expires_at']),
-                auth_host: auth.host
+                auth_host: auth.host,
+                backend: c.backend
               };
     Cookies.set('xivo_auth_session', session, { expires: session.expires });
 }
@@ -116,7 +117,8 @@ var print_auth_info = function() {
         session.uuid = '-'
     }
 
-    info = "<tr><td><strong>token</strong></td><td>" + session.token + "</td></tr>" +
+    info = "<tr><td><strong>backend</strong></td><td>" + session.backend + "</td></tr>" +
+           "<tr><td><strong>token</strong></td><td>" + session.token + "</td></tr>" +
            "<tr><td><strong>uuid</strong></td><td>" + session.uuid + "</td></tr>" +
            "<tr><td><strong>auth_id</strong></td><td>" + session.auth_id + "</td></tr>" +
            "<tr><td><strong>expiration</strong></td><td>" + session.expires + " in <em><span id='expiration'></span></em></td></tr>" +

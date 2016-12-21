@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>XiVO Authentification</title>
+    <title>Wazo Authentification</title>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -19,7 +19,7 @@
         <div class="col-sm-6 col-sm-offset-3 form-box">
           <div class="form-top">
             <div class="form-top-left">
-              <h1>Log in to XiVO</h1>
+              <h1>Log in to Wazo</h1>
               <p>Enter your username and password to log on:</p>
             </div>
             <div class="form-top-right">
@@ -33,7 +33,6 @@
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
                 <input type="text" name="form-username" placeholder="Username" class="form-control input-lg" id="username" required autofocus>
  	      </div>
-              
               <div class="input-group form-group">
                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
  	          <input type="password" name="form-password" placeholder="Password" class="form-control input-lg" id="password" required autofocus>
@@ -43,7 +42,7 @@
 
               <div class="input-group form-group form-inline">
                 <span class="input-group-addon"><i class="fa fa-server"></i></span>
-                <input type="text" id="host" class="form-control input-lg" placeholder="Please set a XiVO auth..." data-toggle="tooltip" data-placement="bottom" title="Looks like https://address_ip_xivo:9497" required>
+                <input type="text" id="host" class="form-control input-lg" placeholder="Please set a xivo-auth..." data-toggle="tooltip" data-placement="bottom" title="Looks like https://address_ip_xivo:9497" required>
 
                 <select id="backend" class="selectpicker" data-width="auto" data-style="form-control btn-danger" required>
                   <option value="">Missing backend</option>
@@ -68,7 +67,7 @@
 
         <div class="row">
           <div class="col-md-12">
-            <h1 class="text-center">Congrats! You are logged into XiVO</h1>
+            <h1 class="text-center">Congrats! You are logged into Wazo</h1>
             <br>
           </div>
         </div>
@@ -87,22 +86,22 @@
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="myModalLabel">Welcome to XiVO auth</h4>
+              <h4 class="modal-title" id="myModalLabel">Welcome to Wazo auth</h4>
             </div>
             <div class="modal-body text-left">
-              <p>Hello, this is your first connection to this system or your xivo auth host connection is empty.</p>
+              <p>Hello, this is your first connection to this system or your xivo-auth host connection is empty.</p>
               <p>If it your first time, please take time to understand how does it work and what you can do here.</p>
-              <p>You need to a connection to your XiVO auth service. By default it looks like <strong>https://ip_address_of_your_xivo:9497</strong>.
+              <p>You need to a connection to your xivo-auth service. By default it looks like <strong>https://ip_address_of_your_xivo:9497</strong>.
               Please accept the certificate on your service</p>
               <p>The backends:
                 <ul>
-                  <li>XiVO Admin: use your xivo webi user like root.</li>
+                  <li>XiVO Admin: use your wazo webi user like root.</li>
                   <li>XiVO User: use client cti user.</li>
                   <li>XiVO Service: use a specific user from xivo-manage-key.</li>
                   <li>XiVO WS: use a webservice user set in webi.</li>
                 </ul>
               </p>
-              <p>Thank you for supporting <strong>XiVO!</strong></p>
+              <p>Thank you for supporting <strong>Wazo!</strong></p>
             </div>
           </div>
         </div>

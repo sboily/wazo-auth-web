@@ -1,4 +1,4 @@
-# xivo-auth-web
+# wazo-auth-web
 
 What is it?
 ===========

@@ -42,7 +42,7 @@
 
               <div class="input-group form-group form-inline">
                 <span class="input-group-addon"><i class="fa fa-server"></i></span>
-                <input type="text" id="host" class="form-control input-lg" placeholder="Please set a xivo-auth..." data-toggle="tooltip" data-placement="bottom" title="Looks like https://address_ip_xivo:9497" required>
+                <input type="text" id="host" class="form-control input-lg" placeholder="Please set a wazo-auth..." data-toggle="tooltip" data-placement="bottom" title="Looks like https://address_ip_wazo:9497" required>
 
                 <select id="backend" class="selectpicker" data-width="auto" data-style="form-control btn-danger" required>
                   <option value="">Missing backend</option>
@@ -89,16 +89,13 @@
               <h4 class="modal-title" id="myModalLabel">Welcome to Wazo auth</h4>
             </div>
             <div class="modal-body text-left">
-              <p>Hello, this is your first connection to this system or your xivo-auth host connection is empty.</p>
+              <p>Hello, this is your first connection to this system or your wazo-auth host connection is empty.</p>
               <p>If it your first time, please take time to understand how does it work and what you can do here.</p>
-              <p>You need to a connection to your xivo-auth service. By default it looks like <strong>https://ip_address_of_your_xivo:9497</strong>.
+              <p>You need to a connection to your wazo-auth service. By default it looks like <strong>https://ip_address_of_your_wazo:9497</strong>.
               Please accept the certificate on your service</p>
               <p>The backends:
                 <ul>
-                  <li>XiVO Admin: use your wazo webi user like root.</li>
-                  <li>XiVO User: use client cti user.</li>
-                  <li>XiVO Service: use a specific user from xivo-manage-key.</li>
-                  <li>XiVO WS: use a webservice user set in webi.</li>
+                  <li>wazo-user: use wazo-auth user.</li>
                 </ul>
               </p>
               <p>Thank you for supporting <strong>Wazo!</strong></p>

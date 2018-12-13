@@ -8,5 +8,3 @@ This is a proof of concept to authenticate a user in Wazo with javascript. With 
 There is an online instance on https://auth.wazo.community.
 
 Working with Wazo or XiVO > 15.11
-
-![Auth screenshot](/screenshots/login.png?raw=true "Auth")

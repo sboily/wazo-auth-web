@@ -70,7 +70,7 @@ var print_backends = function(data) {
 var set_cookies = function(data) {
     session = { token: data['data']['token'],
                 uuid: data['data']['xivo_user_uuid'],
-                acls: data['data']['acls'],
+                acls: data['data']['acl'] || data['data']['acls'],
                 auth_id: data['data']['auth_id'],
                 expires: new Date(data['data']['expires_at']),
                 auth_host: auth.host,
